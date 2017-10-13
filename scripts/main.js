@@ -1,5 +1,6 @@
 // this is the main js file
-
+//variables
+var createNewWishlistButton = document.getElementById('createNewWistlist')
 // add a new wishlist to data base
 function addNewWishList(time, strength, content) {
     var wishListData = {
@@ -44,3 +45,11 @@ function retrieveData(reference){
 function removeList(listId){
   wishRef.child(listId).remove();
 }
+
+//bind buttons
+//save the new wishlist by user to database
+window.addEventListener('load',function(){
+  createNewWishlistButton.addEventListener('click',function(){
+    addNewWishList(document.getElementById('time').value,document.getElementById('strength').value,document.getElementById('content').value)
+  })
+})
