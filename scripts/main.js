@@ -7,7 +7,8 @@ function addNewWishList(time, strength, content) {
         strength: strength,
         content: content,
         // default saved is false
-        saved: false
+        saved: false,
+        inHistory: false
     }
     var newWishListKey = firebase.database().ref().child('wishlists').push().key;
     var updates = {};
@@ -18,8 +19,28 @@ function addNewWishList(time, strength, content) {
 // Here is how to retrieve data from firebase
 // create a reference on wishlist
 var wishRef = firebase.database().ref('wishlists')
-wishRef.on('value', function(snapshot) {
-    snapshot.forEach(function(childsnapshot) {
-        console.log(childsnapshot.val())
+// wishRef.on('value', function(snapshot) {
+//     snapshot.forEach(function(childsnapshot) {
+//         console.log(childsnapshot.val())
+//     })
+// })
+
+// a function to retrieve wishlists and save them in an object
+function retrieveData(reference){
+  var outputObject = {};
+  var i = 0;
+  reference.on('value',function(data){
+    data.forEach(function(childData){
+      var wishlistKey = Object.keys(data.val())[i];
+      outputObject[wishlistKey] = childData.val();
+      i++;
     })
-})
+  })
+  return outputObject;
+}
+
+// a function to filter saved lists and save them in an array
+
+function removeList(listId){
+  wishRef.child(listId).remove();
+}

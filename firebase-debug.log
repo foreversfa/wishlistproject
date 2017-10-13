@@ -1,28 +1,28 @@
-[debug] [2017-10-12T01:00:55.063Z] ----------------------------------------------------------------------
-[debug] [2017-10-12T01:00:55.067Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2017-10-12T01:00:55.068Z] CLI Version:   3.13.1
-[debug] [2017-10-12T01:00:55.068Z] Platform:      darwin
-[debug] [2017-10-12T01:00:55.068Z] Node Version:  v6.11.4
-[debug] [2017-10-12T01:00:55.069Z] Time:          Wed Oct 11 2017 21:00:55 GMT-0400 (EDT)
-[debug] [2017-10-12T01:00:55.069Z] ----------------------------------------------------------------------
+[debug] [2017-10-13T01:12:42.975Z] ----------------------------------------------------------------------
+[debug] [2017-10-13T01:12:42.979Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2017-10-13T01:12:42.979Z] CLI Version:   3.13.1
+[debug] [2017-10-13T01:12:42.980Z] Platform:      darwin
+[debug] [2017-10-13T01:12:42.980Z] Node Version:  v6.11.4
+[debug] [2017-10-13T01:12:42.981Z] Time:          Thu Oct 12 2017 21:12:42 GMT-0400 (EDT)
+[debug] [2017-10-13T01:12:42.981Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-10-12T01:00:55.089Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-10-12T01:00:55.089Z] > authorizing via signed-in user
-[debug] [2017-10-12T01:00:55.093Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wishlist-b3df6  
- Wed Oct 11 2017 21:00:55 GMT-0400 (EDT)
-[debug] [2017-10-12T01:00:55.801Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-12T01:00:55.802Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wishlist-b3df6/tokens  
- Wed Oct 11 2017 21:00:55 GMT-0400 (EDT)
-[debug] [2017-10-12T01:00:56.297Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T01:12:43.001Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-13T01:12:43.001Z] > authorizing via signed-in user
+[debug] [2017-10-13T01:12:43.005Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wishlist-b3df6  
+ Thu Oct 12 2017 21:12:43 GMT-0400 (EDT)
+[debug] [2017-10-13T01:12:43.516Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T01:12:43.518Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wishlist-b3df6/tokens  
+ Thu Oct 12 2017 21:12:43 GMT-0400 (EDT)
+[debug] [2017-10-13T01:12:43.974Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/Liyang_Li/Google Drive/gitRepos/wishlistproject'...
 [info] 
-[debug] [2017-10-12T01:00:56.304Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wishlist-b3df6  
- Wed Oct 11 2017 21:00:56 GMT-0400 (EDT)
-[debug] [2017-10-12T01:00:56.899Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-12T01:00:56.900Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/313907169918/clients/_:getWebAppConfig  
- Wed Oct 11 2017 21:00:56 GMT-0400 (EDT)
-[debug] [2017-10-12T01:00:57.442Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T01:12:43.981Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wishlist-b3df6  
+ Thu Oct 12 2017 21:12:43 GMT-0400 (EDT)
+[debug] [2017-10-13T01:12:44.268Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-13T01:12:44.269Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/313907169918/clients/_:getWebAppConfig  
+ Thu Oct 12 2017 21:12:44 GMT-0400 (EDT)
+[debug] [2017-10-13T01:12:44.702Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: ./
 [info] ✔  hosting: Local server: http://localhost:5000
 
