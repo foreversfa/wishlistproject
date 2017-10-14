@@ -1,6 +1,11 @@
 // this is the main js file
 //variables
 var createNewWishlistButton = document.getElementById('createNewWistlist')
+// create a reference on wishlist
+var wishRef = firebase.database().ref('wishlists')
+
+
+
 // add a new wishlist to data base
 function addNewWishList(time, strength, content) {
     var wishListData = {
@@ -18,33 +23,48 @@ function addNewWishList(time, strength, content) {
 }
 
 // Here is how to retrieve data from firebase
-// create a reference on wishlist
-var wishRef = firebase.database().ref('wishlists')
-// wishRef.on('value', function(snapshot) {
-//     snapshot.forEach(function(childsnapshot) {
-//         console.log(childsnapshot.val())
-//     })
-// })
 
 // a function to retrieve wishlists and save them in an object
 function retrieveData(reference){
   var outputObject = {};
   var i = 0;
-  reference.on('value',function(data){
+  reference.once('value').then(function(data){
     data.forEach(function(childData){
+
       var wishlistKey = Object.keys(data.val())[i];
       outputObject[wishlistKey] = childData.val();
       i++;
     })
   })
+
   return outputObject;
 }
 
-// a function to filter saved lists and save them in an array
+// create divs for each wish list
+function createDivsForEachWishlist(listObject){
 
+
+  for(key in listObject){
+
+    // make sure the list item is not in hisotry or saved
+    if((!listObject[key].saved) && (!listObject[key].inHistory)){
+
+      var newWishlistDiv = document.createElement('div');
+      newWishlistDiv.id = "list"+key;
+      newWishlistDiv.class = "mainWishlistDivs"
+      newWishlistDiv.innerHTML = listObject[key].time+", "+listObject[key].strength+", "+listObject[key].content+"."
+      document.body.appendChild(newWishlistDiv);
+    }
+  }
+}
+
+
+// remove a list according to id
 function removeList(listId){
   wishRef.child(listId).remove();
 }
+
+
 
 //bind buttons
 //save the new wishlist by user to database
@@ -52,4 +72,12 @@ window.addEventListener('load',function(){
   createNewWishlistButton.addEventListener('click',function(){
     addNewWishList(document.getElementById('time').value,document.getElementById('strength').value,document.getElementById('content').value)
   })
+
 })
+
+var listObjects = retrieveData(wishRef);
+
+window.onload = function(){
+  console.log(1)
+  createDivsForEachWishlist();
+}
