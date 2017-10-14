@@ -25,24 +25,36 @@ function addNewWishList(time, strength, content) {
 // Here is how to retrieve data from firebase
 
 // a function to retrieve wishlists and save them in an object
-function retrieveData(reference){
-  var outputObject = {};
-  var i = 0;
-  reference.once('value').then(function(data){
-    data.forEach(function(childData){
+// function retrieveData(reference){
+//   var outputObject = {};
+//   var i = 0;
+//   reference.once('value').then(function(data){
+//     data.forEach(function(childData){
+//
+//       var wishlistKey = Object.keys(data.val())[i];
+//       outputObject[wishlistKey] = childData.val();
+//       i++;
+//     })
+//     return outputObject;
+//   })
+// }
 
+// a function retrieve wishlist data and return a promise
+function getWishlistPromise(reference){
+  var outputObject = {}
+  var i = 0;
+  return reference.once('value').then(function(data){
+    data.forEach(function(childData){
       var wishlistKey = Object.keys(data.val())[i];
       outputObject[wishlistKey] = childData.val();
       i++;
     })
+    return outputObject;
   })
-
-  return outputObject;
 }
 
 // create divs for each wish list
 function createDivsForEachWishlist(listObject){
-
 
   for(key in listObject){
 
@@ -64,7 +76,9 @@ function removeList(listId){
   wishRef.child(listId).remove();
 }
 
-
+getWishlistPromise(wishRef).then(function(data){
+  createDivsForEachWishlist(data);
+})
 
 //bind buttons
 //save the new wishlist by user to database
@@ -75,9 +89,9 @@ window.addEventListener('load',function(){
 
 })
 
-var listObjects = retrieveData(wishRef);
-
-window.onload = function(){
-  console.log(1)
-  createDivsForEachWishlist(wishRef);
-}
+// var listObjects = retrieveData(wishRef);
+//
+// window.onload = function(){
+//   console.log(1)
+//   createDivsForEachWishlist(listObjects);
+// }
