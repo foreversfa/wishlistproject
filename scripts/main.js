@@ -79,5 +79,5 @@ var listObjects = retrieveData(wishRef);
 
 window.onload = function(){
   console.log(1)
-  createDivsForEachWishlist();
+  createDivsForEachWishlist(wishRef);
 }
