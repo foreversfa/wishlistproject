@@ -1,9 +1,10 @@
 // this is the main js file
 //variables
-var createNewWishlistButton = document.getElementById('createNewWistlist')
+var createNewWishlistButton;
+var createButton = document.getElementById('create-button');
+var listContainer = document.getElementById('wishlist-container');
 // create a reference on wishlist
 var wishRef = firebase.database().ref('wishlists')
-
 
 
 // add a new wishlist to data base
@@ -21,23 +22,6 @@ function addNewWishList(time, strength, content) {
     updates['/wishlists/' + newWishListKey] = wishListData;
     return firebase.database().ref().update(updates)
 }
-
-// Here is how to retrieve data from firebase
-
-// a function to retrieve wishlists and save them in an object
-// function retrieveData(reference){
-//   var outputObject = {};
-//   var i = 0;
-//   reference.once('value').then(function(data){
-//     data.forEach(function(childData){
-//
-//       var wishlistKey = Object.keys(data.val())[i];
-//       outputObject[wishlistKey] = childData.val();
-//       i++;
-//     })
-//     return outputObject;
-//   })
-// }
 
 // a function retrieve wishlist data and return a promise
 function getWishlistPromise(reference){
@@ -72,29 +56,65 @@ function createDivsForEachWishlist(listObject){
   }
 }
 
+// add an empty list to the top when user click "create button"
+function insertEmptyList(){
+  var emptyList = document.createElement('div');
+  emptyList.id = "toBeEditedWishlist";
+  emptyList.className = "mainWishlistDivs";
+  emptyList.innerHTML =
+  '<form>'+
+    '<div class="form-group">'+
+    '<label>time:</label>'+
+    '<input type="text" id="time" class="form-control">'+
+    '<label>strength:</label>'+
+    '<input type="text" id="strength" class="form-control">'+
+    '<label>content:</label>'+
+    '<input type="text" id="content" class="form-control">'+
+    '<button type="button" id="createNewWistlist" value="create">Submit</button>'+
+    '</div>'+
+  '</form> ';
+  var container = document.getElementById('wishlist-container');
+  container.insertBefore(emptyList,container.childNodes[0]);
+
+}
+// retrieve data and display divs
+function displayLists(){
+  getWishlistPromise(wishRef).then(function(data){
+    createDivsForEachWishlist(data);
+  })
+}
+
+// refresh the page with updated data
+function updateContainer(){
+  while(listContainer.firstChild){
+    listContainer.removeChild(listContainer.firstChild);
+  }
+  displayLists();
+}
+
 
 // remove a list according to id
 function removeList(listId){
   wishRef.child(listId).remove();
 }
 
-getWishlistPromise(wishRef).then(function(data){
-  createDivsForEachWishlist(data);
-})
-
+// run displayLists for the first time
+displayLists();
 //bind buttons
 //save the new wishlist by user to database
-window.addEventListener('load',function(){
-  // add event listern to create button
-  // createNewWishlistButton.addEventListener('click',function(){
-    // addNewWishList(document.getElementById('time').value,document.getElementById('strength').value,document.getElementById('content').value)
-  // })
+document.addEventListener('click',function(event){
+  console.log(event)
+  // add event listern to create-button
+  if(event.target.id === 'create-button'){
+    insertEmptyList();
+  }
+  // add event listern to submit new list button
+
+  if(event.target.id === 'createNewWistlist'){
+    addNewWishList(document.getElementById('time').value,document.getElementById('strength').value,document.getElementById('content').value);
+    updateContainer();
+  }
+
+
 
 })
-
-// var listObjects = retrieveData(wishRef);
-//
-// window.onload = function(){
-//   console.log(1)
-//   createDivsForEachWishlist(listObjects);
-// }
