@@ -63,9 +63,11 @@ function createDivsForEachWishlist(listObject){
 
       var newWishlistDiv = document.createElement('div');
       newWishlistDiv.id = "list"+key;
-      newWishlistDiv.class = "mainWishlistDivs"
-      newWishlistDiv.innerHTML = listObject[key].time+", "+listObject[key].strength+", "+listObject[key].content+"."
-      document.body.appendChild(newWishlistDiv);
+      newWishlistDiv.className = "mainWishlistDivs"
+      newWishlistDiv.innerHTML = '<p>'+listObject[key].time+",</p> "+
+                                 '<p>'+listObject[key].strength+",</p>"+
+                                 '<p>'+listObject[key].content+".</p>"
+      document.getElementById('wishlist-container').appendChild(newWishlistDiv);
     }
   }
 }
@@ -83,9 +85,10 @@ getWishlistPromise(wishRef).then(function(data){
 //bind buttons
 //save the new wishlist by user to database
 window.addEventListener('load',function(){
-  createNewWishlistButton.addEventListener('click',function(){
-    addNewWishList(document.getElementById('time').value,document.getElementById('strength').value,document.getElementById('content').value)
-  })
+  // add event listern to create button
+  // createNewWishlistButton.addEventListener('click',function(){
+    // addNewWishList(document.getElementById('time').value,document.getElementById('strength').value,document.getElementById('content').value)
+  // })
 
 })
 

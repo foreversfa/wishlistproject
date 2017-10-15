@@ -1,1 +1,16 @@
 /*this is the main css file*/
+/*define a grip system for wishlist container*/
+#wishlist-container{
+  width: 870px;
+	display: grid;
+  grid-gap: 10px;
+	grid-template-columns: repeat(3, 250px);
+}
+/*style of wishlist*/
+.mainWishlistDivs {
+  background-color: #dcc982;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 10px;
+}
