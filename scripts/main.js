@@ -78,6 +78,11 @@ function printSavedLists(listObject){
     }
   }
 }
+
+// open list by saving it.
+function saveTheList(id){
+  return wishRef.child(id+'/saved').set(true);
+}
   // for(key in listObject){
   //
   //   // make sure the list item is not in hisotry or saved
@@ -145,6 +150,7 @@ displayLists();
 //bind buttons
 //save the new wishlist by user to database
 document.addEventListener('click',function(event){
+  // console.log(event)
 
   // add event listern to create-button
   if(event.target.id === 'create-button'){
@@ -160,6 +166,18 @@ document.addEventListener('click',function(event){
   if(event.target.id === 'shuffle-button'){
     updateContainer();
   }
+
+  if(event.target.parentElement.id === 'wishlist-container'){
+    if(confirm("Do you want to save this wishlist?")==true){
+      saveTheList(event.target.id);
+      updateContainer();
+    }
+    else{
+      return;
+    }
+
+  }
+
 
 
 
