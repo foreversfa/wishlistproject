@@ -12,6 +12,7 @@
   border-radius: 5px;
   padding: 20px;
   font-size: 10px;
+  position:relative;
 }
 
 #wishlist-container{
@@ -30,11 +31,27 @@
   /*grid-auto-rows: 260px ;*/
 }
 /*style of wishlist*/
-.mainWishlistDivs {
+/*.mainWishlistDivs {
   background-color: #dcc982;
   color: #333;
   border-radius: 5px;
   padding: 20px;
   font-size: 10px;
 
+}*/
+
+/*style of cross button*/
+.cross-button{
+  display:inline-block;
+  font-size: 8px;
+  height:20px;
+  position:absolute;
+  border: 1px solid black;
+  border-radius: 10px;
+  top:10px;
+  right:10px;
+  padding: 4px 6px 4px 6px;
+}
+.cross-button:hover{
+  cursor:pointer;
 }

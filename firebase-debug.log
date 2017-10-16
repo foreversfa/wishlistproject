@@ -1,36 +1,36 @@
-[debug] [2017-10-16T03:19:15.584Z] ----------------------------------------------------------------------
-[debug] [2017-10-16T03:19:15.588Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2017-10-16T03:19:15.589Z] CLI Version:   3.13.1
-[debug] [2017-10-16T03:19:15.589Z] Platform:      darwin
-[debug] [2017-10-16T03:19:15.589Z] Node Version:  v6.11.4
-[debug] [2017-10-16T03:19:15.590Z] Time:          Sun Oct 15 2017 23:19:15 GMT-0400 (EDT)
-[debug] [2017-10-16T03:19:15.590Z] ----------------------------------------------------------------------
+[debug] [2017-10-16T17:44:44.018Z] ----------------------------------------------------------------------
+[debug] [2017-10-16T17:44:44.024Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2017-10-16T17:44:44.025Z] CLI Version:   3.13.1
+[debug] [2017-10-16T17:44:44.025Z] Platform:      darwin
+[debug] [2017-10-16T17:44:44.025Z] Node Version:  v6.11.4
+[debug] [2017-10-16T17:44:44.026Z] Time:          Mon Oct 16 2017 13:44:44 GMT-0400 (EDT)
+[debug] [2017-10-16T17:44:44.026Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-10-16T03:19:15.615Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-10-16T03:19:15.615Z] > authorizing via signed-in user
-[debug] [2017-10-16T03:19:15.618Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2017-10-16T03:19:15.619Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/hoqUfLWwJwOMAxLdnsgZ8QMeP2cFH-pTW0Sbw-jLvBE',
+[debug] [2017-10-16T17:44:44.047Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-16T17:44:44.047Z] > authorizing via signed-in user
+[debug] [2017-10-16T17:44:44.051Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-16T17:44:44.051Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/hoqUfLWwJwOMAxLdnsgZ8QMeP2cFH-pTW0Sbw-jLvBE',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Sun Oct 15 2017 23:19:15 GMT-0400 (EDT)
-[debug] [2017-10-16T03:19:15.821Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-16T03:19:15.841Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wishlist-b3df6  
- Sun Oct 15 2017 23:19:15 GMT-0400 (EDT)
-[debug] [2017-10-16T03:19:16.292Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-16T03:19:16.294Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wishlist-b3df6/tokens  
- Sun Oct 15 2017 23:19:16 GMT-0400 (EDT)
-[debug] [2017-10-16T03:19:16.793Z] <<< HTTP RESPONSE 200
+ Mon Oct 16 2017 13:44:44 GMT-0400 (EDT)
+[debug] [2017-10-16T17:44:44.261Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-16T17:44:44.279Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/wishlist-b3df6  
+ Mon Oct 16 2017 13:44:44 GMT-0400 (EDT)
+[debug] [2017-10-16T17:44:44.723Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-16T17:44:44.724Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/wishlist-b3df6/tokens  
+ Mon Oct 16 2017 13:44:44 GMT-0400 (EDT)
+[debug] [2017-10-16T17:44:45.085Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/Liyang_Li/Google Drive/gitRepos/wishlistproject'...
 [info] 
-[debug] [2017-10-16T03:19:16.799Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wishlist-b3df6  
- Sun Oct 15 2017 23:19:16 GMT-0400 (EDT)
-[debug] [2017-10-16T03:19:17.126Z] <<< HTTP RESPONSE 200
-[debug] [2017-10-16T03:19:17.127Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/313907169918/clients/_:getWebAppConfig  
- Sun Oct 15 2017 23:19:17 GMT-0400 (EDT)
-[debug] [2017-10-16T03:19:17.627Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-16T17:44:45.090Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/wishlist-b3df6  
+ Mon Oct 16 2017 13:44:45 GMT-0400 (EDT)
+[debug] [2017-10-16T17:44:45.503Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-16T17:44:45.504Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/313907169918/clients/_:getWebAppConfig  
+ Mon Oct 16 2017 13:44:45 GMT-0400 (EDT)
+[debug] [2017-10-16T17:44:45.987Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: ./
 [info] ✔  hosting: Local server: http://localhost:5000
 
