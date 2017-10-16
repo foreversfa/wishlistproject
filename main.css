@@ -1,10 +1,33 @@
 /*this is the main css file*/
 /*define a grip system for wishlist container*/
+.container{
+  display: grid;
+  grid-template-columns:0.7fr 20px 0.3fr;
+
+}
+
+.general-list-style{
+  background-color: #dcc982;
+  color: #333;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 10px;
+}
+
 #wishlist-container{
-  width: 870px;
-	display: grid;
+  grid-column: 1/2;
+  display:grid;
+  grid-template-columns: repeat(3,250px);
   grid-gap: 10px;
-	grid-template-columns: repeat(3, 250px);
+	/*grid-template-columns: repeat(3, 250px);*/
+}
+/*style of saved list*/
+#saved-list-container{
+  grid-column: 3/4;
+  display:grid;
+  grid-template-columns:repeat(1,250px);
+  grid-gap: 10px;
+  /*grid-auto-rows: 260px ;*/
 }
 /*style of wishlist*/
 .mainWishlistDivs {
@@ -13,4 +36,5 @@
   border-radius: 5px;
   padding: 20px;
   font-size: 10px;
+
 }
