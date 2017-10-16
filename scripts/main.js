@@ -55,28 +55,44 @@ function createDivsForEachWishlist(listObject) {
         // make sure the main list does not contain historical list and saved list
         if ((!listObject[randomizedKeys[i]].saved) && (!listObject[randomizedKeys[i]].inHistory)) {
             var newWishlistDiv = document.createElement('div');
+            // ----------------------------------
+            // create a cross for deleting
+            var crossButton = document.createElement('div');
+            crossButton.className = "cross-button";
+            crossButton.innerHTML = 'x'
+            // ----------------------------------
             newWishlistDiv.id = randomizedKeys[i];
             newWishlistDiv.className = "general-list-style";
             newWishlistDiv.innerHTML = '<p>' + listObject[randomizedKeys[i]].time + ",</p> " +
                 '<p>' + listObject[randomizedKeys[i]].strength + ".</p>";
             document.getElementById('wishlist-container').appendChild(newWishlistDiv);
+            newWishlistDiv.appendChild(crossButton);
         }
     }
 }
 
 // print saved lists on screen
+// not in use anymore because of order issue.
 function printSavedLists(listObject) {
 
     for (key in listObject) {
 
         if (listObject[key].saved) {
             var newSavedlistDiv = document.createElement('div');
+            // ----------------------------------
+            // create a cross for deleting
+            var crossButton = document.createElement('div');
+            crossButton.className = "cross-button";
+            crossButton.innerHTML = 'x'
+
+            // ----------------------------------
             newSavedlistDiv.id = key;
             newSavedlistDiv.className = "general-list-style";
             newSavedlistDiv.innerHTML = "<p>" + listObject[key].time + ",</p> " +
                 "<p>" + listObject[key].strength + ",</p>" +
                 "<p>" + listObject[key].content + ".</p>"
             document.getElementById('saved-list-container').appendChild(newSavedlistDiv);
+            newSavedlistDiv.appendChild(crossButton);
         }
     }
 }
@@ -91,25 +107,11 @@ function saveTheList(id) {
         toBeSaved.savedTime = savedTime;
         savedRef.child(id).update(toBeSaved);
         wishRef.child(id).update({
-            saved: true
+            saved: true,
+            inHistory: true
         });
     })
 }
-// for(key in listObject){
-//
-//   // make sure the list item is not in hisotry or saved
-//   if((!listObject[key].saved) && (!listObject[key].inHistory)){
-//
-//     var newWishlistDiv = document.createElement('div');
-//     newWishlistDiv.id = "list"+key;
-//     newWishlistDiv.className = "mainWishlistDivs"
-//     newWishlistDiv.innerHTML = '<p>'+listObject[key].time+",</p> "+
-//                                '<p>'+listObject[key].strength+",</p>"+
-//                                '<p>'+listObject[key].content+".</p>"
-//     document.getElementById('wishlist-container').appendChild(newWishlistDiv);
-//   }
-// }
-
 
 // add an empty list to the top when user click "create button"
 function insertEmptyList() {
@@ -141,16 +143,23 @@ function displayLists() {
       savedRef.orderByChild('savedTime').on('value', function(data) {
           // printSavedLists(data.val());
           // try not using json here.
-          console.log("inside display")
+
           savedRef.orderByChild('savedTime').limitToFirst(5).on('value', function(data) {
               data.forEach(function(childData) {
                   var newSavedlistDiv = document.createElement('div');
+                  // create a cross for deleting
+                  var crossButton = document.createElement('div');
+                  crossButton.className = "cross-button";
+                  crossButton.innerHTML = 'x'
+
+                  // ----------------------------------
                   newSavedlistDiv.id = childData.key;
                   newSavedlistDiv.className = "general-list-style";
                   newSavedlistDiv.innerHTML = "<p>" + childData.val().time + ",</p> " +
                       "<p>" + childData.val().strength + ",</p>" +
                       "<p>" + childData.val().content + ".</p>"
                   document.getElementById('saved-list-container').appendChild(newSavedlistDiv);
+                  newSavedlistDiv.appendChild(crossButton);
               })
           })
       })
@@ -165,15 +174,19 @@ function updateContainer() {
     }
     while (savedContainer.firstChild) {
         savedContainer.removeChild(savedContainer.firstChild);
-        console.log("inside remove first child")
+
     }
     displayLists();
 }
 
 
 // remove a list according to id
-function removeList(listId) {
-    wishRef.child(listId).remove();
+function removeSavedList(listId) {
+  return savedRef.child(listId).remove();
+}
+
+function putListInHistory(listId){
+  return wishRef.child(listId).update({inHistory:true});
 }
 
 // run displayLists for the first time
@@ -181,7 +194,6 @@ displayLists();
 //bind buttons
 //save the new wishlist by user to database
 document.addEventListener('click', function(event) {
-    // console.log(event)
 
     // add event listern to create-button
     if (event.target.id === 'create-button') {
@@ -198,7 +210,7 @@ document.addEventListener('click', function(event) {
         updateContainer();
     }
 
-    if (event.target.parentElement.id === 'wishlist-container') {
+    if (event.target.parentElement && event.target.parentElement.id === 'wishlist-container') {
         if (confirm("Do you want to save this wishlist?") == true) {
             saveTheList(event.target.id).then(function(){
               updateContainer();
@@ -209,6 +221,20 @@ document.addEventListener('click', function(event) {
         }
 
     }
+
+    if (event.target.className === 'cross-button' ){
+      if(event.target.parentElement.parentElement.id === "wishlist-container"){
+        putListInHistory(event.target.parentElement.id).then(function(){
+          updateContainer();
+        })
+      }
+      else if(event.target.parentElement.parentElement.id === "saved-list-container"){
+        removeSavedList(event.target.parentElement.id).then(function(){
+          updateContainer();
+        })
+      }
+    }
+
 
 
 
