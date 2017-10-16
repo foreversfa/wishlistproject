@@ -3,6 +3,7 @@
 var createNewWishlistButton;
 var createButton = document.getElementById('create-button');
 var listContainer = document.getElementById('wishlist-container');
+var savedContainer = document.getElementById('saved-list-container');
 // create a reference on wishlist
 var wishRef = firebase.database().ref('wishlists')
 
@@ -55,11 +56,25 @@ function createDivsForEachWishlist(listObject){
     if((!listObject[randomizedKeys[i]].saved) && (!listObject[randomizedKeys[i]].inHistory)){
       var newWishlistDiv = document.createElement('div');
       newWishlistDiv.id = randomizedKeys[i];
-      newWishlistDiv.className = "mainWishlistDivs";
+      newWishlistDiv.className = "general-list-style";
       newWishlistDiv.innerHTML = '<p>'+listObject[randomizedKeys[i]].time+",</p> "+
-                                     '<p>'+listObject[randomizedKeys[i]].strength+",</p>"+
-                                     '<p>'+listObject[randomizedKeys[i]].content+".</p>";
+                                     '<p>'+listObject[randomizedKeys[i]].strength+".</p>";
       document.getElementById('wishlist-container').appendChild(newWishlistDiv);
+    }
+  }
+}
+
+// print saved lists on screen
+function printSavedLists(listObject){
+  for(key in listObject){
+    if(listObject[key].saved){
+      var newSavedlistDiv = document.createElement('div');
+      newSavedlistDiv.id = key;
+      newSavedlistDiv.className = "general-list-style";
+      newSavedlistDiv.innerHTML = "<p>"+listObject[key].time+",</p> "+
+                                 "<p>"+listObject[key].strength+",</p>"+
+                                 "<p>"+listObject[key].content+".</p>"
+      document.getElementById('saved-list-container').appendChild(newSavedlistDiv);
     }
   }
 }
@@ -83,7 +98,7 @@ function createDivsForEachWishlist(listObject){
 function insertEmptyList(){
   var emptyList = document.createElement('div');
   emptyList.id = "toBeEditedWishlist";
-  emptyList.className = "mainWishlistDivs";
+  emptyList.className = "general-list-style";
   emptyList.innerHTML =
   '<form>'+
     '<div class="form-group">'+
@@ -104,6 +119,7 @@ function insertEmptyList(){
 function displayLists(){
   getWishlistPromise(wishRef).then(function(data){
     createDivsForEachWishlist(data);
+    printSavedLists(data);
   })
 }
 
@@ -111,6 +127,9 @@ function displayLists(){
 function updateContainer(){
   while(listContainer.firstChild){
     listContainer.removeChild(listContainer.firstChild);
+  }
+  while(savedContainer.firstChild){
+    savedContainer.removeChild(savedContainer.firstChild);
   }
   displayLists();
 }
