@@ -21,6 +21,8 @@
   display:grid;
   grid-template-columns: repeat(3,250px);
   grid-gap: 10px;
+  border-right: medium black solid;
+  padding-right:23px;
 	/*grid-template-columns: repeat(3, 250px);*/
 }
 /*style of saved list*/

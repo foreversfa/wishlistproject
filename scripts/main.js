@@ -65,7 +65,9 @@ function createDivsForEachWishlist(listObject) {
             newWishlistDiv.className = "general-list-style";
             newWishlistDiv.innerHTML = '<p>' + listObject[randomizedKeys[i]].time + ",</p> " +
                 '<p>' + listObject[randomizedKeys[i]].strength + ".</p>";
-            document.getElementById('wishlist-container').appendChild(newWishlistDiv);
+            // document.getElementById('wishlist-container').appendChild(newWishlistDiv);
+            var container = document.getElementById('wishlist-container')
+            container.insertBefore(newWishlistDiv,container.childNodes[0])
             newWishlistDiv.appendChild(crossButton);
         }
     }
