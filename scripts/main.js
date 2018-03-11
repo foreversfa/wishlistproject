@@ -59,16 +59,36 @@ function createDivsForEachWishlist(listObject) {
             // create a cross for deleting
             var crossButton = document.createElement('div');
             crossButton.className = "cross-button";
-            crossButton.innerHTML = 'x'
+            crossButton.innerHTML = '<img id="cross-button" src="/img/crossButton.png">'
             // ----------------------------------
             newWishlistDiv.id = randomizedKeys[i];
             newWishlistDiv.className = "general-list-style";
             newWishlistDiv.innerHTML = '<p>' + listObject[randomizedKeys[i]].time + ",</p> " +
                 '<p>' + listObject[randomizedKeys[i]].strength + ".</p>";
-            document.getElementById('wishlist-container').appendChild(newWishlistDiv);
+            // document.getElementById('wishlist-container').appendChild(newWishlistDiv);
+            var container = document.getElementById('wishlist-container')
+            container.insertBefore(newWishlistDiv,container.childNodes[0])
             newWishlistDiv.appendChild(crossButton);
         }
     }
+    var shuffleBotton = document.createElement('div');
+    shuffleBotton.className = "general-list-style-button";
+    shuffleBotton.innerHTML = '<div class="buttons-container">'+
+        '<img id="shuffle-button" src="/img/shuffleSign.png">'+
+    '</div>'
+    var container1 = document.getElementById('wishlist-container')
+    // Inserts the specified node before a reference node as a child of the current node. If referenceNode is null, then newNode is inserted at the end of the list of child nodes.
+    container1.insertBefore(shuffleBotton,container1.childNodes[container1.childNodes])
+    // =============================
+    var newListButton = document.createElement('div');
+    newListButton.className = "general-list-style-button";
+    newListButton.innerHTML = '<div class="buttons-container">'+
+        '<img id="create-button" src="/img/plusSign.png">'+
+    '</div>'
+    var container2 = document.getElementById('wishlist-container')
+    // Inserts the specified node before a reference node as a child of the current node. If referenceNode is null, then newNode is inserted at the end of the list of child nodes.
+    container2.insertBefore(newListButton,container2.childNodes[container2.childNodes])
+
 }
 
 // print saved lists on screen
@@ -83,7 +103,7 @@ function printSavedLists(listObject) {
             // create a cross for deleting
             var crossButton = document.createElement('div');
             crossButton.className = "cross-button";
-            crossButton.innerHTML = 'x'
+            crossButton.innerHTML = '<img id="cross-button" src="/img/crossButton.png">'
 
             // ----------------------------------
             newSavedlistDiv.id = key;
@@ -150,7 +170,7 @@ function displayLists() {
                   // create a cross for deleting
                   var crossButton = document.createElement('div');
                   crossButton.className = "cross-button";
-                  crossButton.innerHTML = 'x'
+                  crossButton.innerHTML = '<img id="cross-button" src="/img/crossButton.png">'
 
                   // ----------------------------------
                   newSavedlistDiv.id = childData.key;
@@ -197,6 +217,7 @@ document.addEventListener('click', function(event) {
 
     // add event listern to create-button
     if (event.target.id === 'create-button') {
+
         insertEmptyList();
     }
     // add event listern to submit new list button
@@ -210,7 +231,8 @@ document.addEventListener('click', function(event) {
         updateContainer();
     }
 
-    if (event.target.parentElement && event.target.parentElement.id === 'wishlist-container') {
+    if (event.target.parentElement && event.target.parentElement.id === 'wishlist-container' && event.target.className != 'general-list-style-button') {
+        console.log(event.target.parentElement)
         if (confirm("Do you want to save this wishlist?") == true) {
             saveTheList(event.target.id).then(function(){
               updateContainer();
